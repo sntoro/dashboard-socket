@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Engineering Corner Dashboard</title>
+
+    <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+
+    <link rel="stylesheet" href="dist/css/font.googleapis.css" />
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <script type="text/javascript" src="js/core/jquery.min.js"></script>
+    <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/justgage.min.js"></script>
+  </head>
+  <style type="text/css">
+    .gauge {
+      width: 150px;
+      height: 100px;
+      display: inline-block;
+    }
+  </style>
+  <body class="dark-mode navbar-fixed text-sm sidebar-collapse">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script>
+      $(function () {
+        var socket = io.connect("http://192.168.0.251:8080");
+        socket.on('LINESTOP/DETAIL', function(data) {
+          $('#data-linestop').html(data);
+        });
+      });
+    </script>
+    <script>
+      $(function () {
+        var socket = io.connect("");
+        socket.on("TORO/TEST2", function (data) {
+          $("#psafety").text(
+            data[0].safety == null ? 0 + " cases" : data[0].safety + " cases"
+          );
+          $("#asafety").text(
+            data[1].safety == null ? 0 + " cases" : data[1].safety + " cases"
+          );
+
+          $("#pjig").text(
+            data[0].jig == null ? 0 + " cases" : data[0].jig + " cases"
+          );
+          $("#ajig").text(
+            data[1].jig == null ? 0 + " cases" : data[1].jig + " cases"
+          );
+
+          $("#pbudgetcomplience").text(
+            data[0].budgetcomplience == null
+              ? 0 + " mio"
+              : data[0].budgetcomplience + " mio"
+          );
+          $("#abudgetcomplience").text(
+            data[1].budgetcomplience == null
+              ? 0 + " mio"
+              : data[1].budgetcomplience + " mio"
+          );
+
+          $("#pabsenteeism").text(
+            data[0].absenteeism == null ? 0 + "%" : data[0].absenteeism + "%"
+          );
+          $("#aabsenteeism").text(
+            data[1].absenteeism == null ? 0 + "%" : data[1].absenteeism + "%"
+          );
+
+          $("#pdesignreview").text(
+            data[0].designreview == null ? 0 + "%" : data[0].designreview + "%"
+          );
+          $("#adesignreview").text(
+            data[1].designreview == null ? 0 + "%" : data[1].designreview + "%"
+          );
+
+          $("#pcustclaim").text(
+            data[0].custclaim == null ? 0 + " ppm" : data[0].custclaim + " ppm"
+          );
+          $("#acustclaim").text(
+            data[1].custclaim == null ? 0 + " ppm" : data[1].custclaim + " ppm"
+          );
+
+          $("#pcostreduction").text(
+            data[0].costreduction == null
+              ? 0 + "%"
+              : data[0].costreduction + "%"
+          );
+          $("#acostreduction").text(
+            data[1].costreduction == null
+              ? 0 + "%"
+              : data[1].costreduction + "%"
+          );
+
+          $("#ptoolpreventive").text(
+            data[0].preventive == null ? 0 + "%" : data[0].preventive + "%"
+          );
+          $("#atoolpreventive").text(
+            data[1].preventive == null ? 0 + "%" : data[1].preventive + "%"
+          );
+
+          $("#plinestop").text(
+            data[0].linestop == null ? 0 + " h" : data[0].linestop + " h"
+          );
+          $("#alinestop").text(
+            data[1].linestop == null ? 0 + " h" : data[1].linestop + " h"
+          );
+
+          $("#prilprocess").text(
+            data[0].process == null ? 0 + "%" : data[0].process + "%"
+          );
+          $("#arilprocess").text(
+            data[1].process == null ? 0 + "%" : data[1].process + "%"
+          );
+
+          $("#prilsetup").text(
+            data[0].setup == null ? 0 + "%" : data[0].setup + "%"
+          );
+          $("#arilsetup").text(
+            data[1].setup == null ? 0 + "%" : data[1].setup + "%"
+          );
+        });
+      });
+    </script>
+
+    <div class="wrapper">
+      <nav class="main-header navbar navbar-dark text-sm">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <span>Engineering Corner Dashboard</span>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <img
+            src="images/aisin-loggo.svg"
+            alt="AisinLogo"
+            class="brand-image"
+            style="opacity: 0.9; width: 75%"
+          />
+        </ul>
+      </nav>
+
+      <div class="content-wrapper">
+        <div class="content-header" style="margin-bottom: -5px"></div>
+
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Accident
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Safety (Case)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="psafety">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="asafety">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-ambulance"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      RIL Process
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Quality (Ratio %)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="prilprocess">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="arilprocess">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-search"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      RIL Setup
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Quality (Ratio %)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="prilsetup">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="arilsetup">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-search"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Down Time Jig > 30'<i
+                        class="fas fa-check-circle text-success fa-xs"
+                      ></i>
+                    </h3>
+                    <p style="margin-top: -15px">Productivity (Case)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pjig">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="ajig">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-user-clock"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-secondary">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Budget Complience
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Cost (IDR)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pbudgetcomplience">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="abudgetcomplience">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-coins"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-primary">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Absenteeism
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Human Resource (%)</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pabsenteeism">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="aabsenteeism">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-user-slash"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Design Review
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">New Development</p>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-recycle"></i>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pdesignreview">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="adesignreview">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Cust Claim
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Quality</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pcustclaim">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="acustclaim">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-tasks"></i>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Cost Reduction
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Cost (IDR)</p>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="pcostreduction">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="acostreduction">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Tools Preventive
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Productivity</p>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-tools"></i>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="ptoolpreventive">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="atoolpreventive">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 style="font-size: 1.5em">
+                      Line Stop
+                      <i class="fas fa-check-circle text-success fa-xs"></i>
+                    </h3>
+                    <p style="margin-top: -15px">Productivity</p>
+                  </div>
+                  <div class="icon">
+                    <i class="nav-icon fas fa-stopwatch"></i>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block border-right">
+                        <h5 class="description-header" id="plinestop">&nbsp;</h5>
+                        <span>Plan</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-6">
+                      <div class="description-block">
+                        <h5 class="description-header" id="alinestop">&nbsp;</h5>
+                        <span>Actual</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="localhost:8080/engcor/" class="small-box-footer"
+                    >View Detail <i class="fas fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card">
+                  <div class="card-header" style="background-color: #5c646a">
+                    <span class="card-title" id="title-overview"
+                      >Lorem Ipsum</span
+                    >
+                    <div class="card-tools">
+                      <span id="on-going-prod"></span>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="row">
+                          <div class="col-sm-6 col-2">
+                            <div class="description-block">
+                              <div id="dummy1" class="gauge"></div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-2">
+                            <div class="description-block">
+                              <div id="dummy2" class="gauge"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-8">
+                <div class="card">
+                  <div class="card-header" style="background-color: #5c646a">
+                    <span class="card-title" id="title-overview">Preventive & Lemmon</span>
+                    <div class="card-tools">
+                      <span id="on-going-prod"></span>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="row">
+                          <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class='grey'>Work Center</th>
+                                    <th class='grey'>Start Time</th>
+                                    <th class='grey'>Problem</th>
+                                    <th class='grey'>Duration</th>
+                                    <th class='grey'>Followed Up By</th>
+                                </tr>
+                            </thead>
+                            <tbody id='data-linestop'>
+                            </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      var gauge_dummy1 = new JustGage({
+        id: "dummy1",
+        value: 80,
+        min: 0,
+        max: 99,
+        label: "RIL",
+        valueFontColor: "#FFFFFF",
+        levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
+        textRenderer: (v) => {
+          return v + "%";
+        },
+        donut: false,
+      });
+
+      var gauge_dummy2 = new JustGage({
+        id: "dummy2",
+        value: 70,
+        min: 0,
+        max: 99,
+        label: "Down Time JIG",
+        valueFontColor: "#FFFFFF",
+        levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
+        textRenderer: (v) => {
+          return v + "%";
+        },
+      });
+    </script>
+  </body>
+</html>

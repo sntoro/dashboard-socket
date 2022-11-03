@@ -1,0 +1,20 @@
+{
+  "name": "ppc-export-visualization-monitoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mqtt": "^4.3.7",
+    "mssql": "^9.0.1",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.5.3",
+    "typedarray-to-buffer": "^4.0.0"
+  }
+}
