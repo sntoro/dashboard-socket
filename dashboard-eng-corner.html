@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="dist/css/adminlte.min.css" />
     <script type="text/javascript" src="js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="js/raphael-min.js"></script>
-    <script type="text/javascript" src="js/justgage.min.js"></script>
   </head>
   <style type="text/css">
     .gauge {
@@ -25,9 +23,19 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script>
       $(function () {
-        var socket = io.connect("http://192.168.0.251:8080");
-        socket.on('LINESTOP/DETAIL', function(data) {
-          $('#data-linestop').html(data);
+        var socket = io.connect();
+
+        socket.on("TORO/TEST3", function (data) {
+          $("#data-preventive").html(data);
+        });
+
+      });
+
+      $(function () {
+        var socket_lemmon = io.connect("http://192.168.0.251:8080");
+
+        socket_lemmon.on("LINESTOP/DETAIL", function (data) {
+          $("#data-linestop").html(data);
         });
       });
     </script>
@@ -126,17 +134,22 @@
     <div class="wrapper">
       <nav class="main-header navbar navbar-dark text-sm">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <span>Engineering Corner Dashboard</span>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
           <img
             src="images/aisin-loggo.svg"
             alt="AisinLogo"
             class="brand-image"
             style="opacity: 0.9; width: 75%"
           />
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <h4>Engineering Corner Dashboard</h4>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <h5 id="date"></h5>
+          </li>
         </ul>
       </nav>
 
@@ -189,13 +202,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="prilprocess">&nbsp;</h5>
+                        <h5 class="description-header" id="prilprocess">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="arilprocess">&nbsp;</h5>
+                        <h5 class="description-header" id="arilprocess">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -221,13 +238,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="prilsetup">&nbsp;</h5>
+                        <h5 class="description-header" id="prilsetup">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="arilsetup">&nbsp;</h5>
+                        <h5 class="description-header" id="arilsetup">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -274,11 +295,11 @@
                 </div>
               </div>
 
-              <div class="col-lg-3 col-6">
+              <div class="col-lg-3 col-12">
                 <div class="small-box bg-secondary">
                   <div class="inner">
                     <h3 style="font-size: 1.5em">
-                      Budget Complience
+                      Budget Compliance
                       <i class="fas fa-check-circle text-success fa-xs"></i>
                     </h3>
                     <p style="margin-top: -15px">Cost (IDR)</p>
@@ -286,13 +307,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="pbudgetcomplience">&nbsp;</h5>
+                        <h5 class="description-header" id="pbudgetcomplience">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="abudgetcomplience">&nbsp;</h5>
+                        <h5 class="description-header" id="abudgetcomplience">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -320,13 +345,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="pabsenteeism">&nbsp;</h5>
+                        <h5 class="description-header" id="pabsenteeism">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="aabsenteeism">&nbsp;</h5>
+                        <h5 class="description-header" id="aabsenteeism">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -347,7 +376,7 @@
                       Design Review
                       <i class="fas fa-check-circle text-success fa-xs"></i>
                     </h3>
-                    <p style="margin-top: -15px">New Development</p>
+                    <p style="margin-top: -15px">Quality</p>
                   </div>
                   <div class="icon">
                     <i class="nav-icon fas fa-recycle"></i>
@@ -355,13 +384,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="pdesignreview">&nbsp;</h5>
+                        <h5 class="description-header" id="pdesignreview">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="adesignreview">&nbsp;</h5>
+                        <h5 class="description-header" id="adesignreview">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -384,13 +417,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="pcustclaim">&nbsp;</h5>
+                        <h5 class="description-header" id="pcustclaim">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="acustclaim">&nbsp;</h5>
+                        <h5 class="description-header" id="acustclaim">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -419,13 +456,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="pcostreduction">&nbsp;</h5>
+                        <h5 class="description-header" id="pcostreduction">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="acostreduction">&nbsp;</h5>
+                        <h5 class="description-header" id="acostreduction">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -451,13 +492,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="ptoolpreventive">&nbsp;</h5>
+                        <h5 class="description-header" id="ptoolpreventive">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="atoolpreventive">&nbsp;</h5>
+                        <h5 class="description-header" id="atoolpreventive">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -483,13 +528,17 @@
                   <div class="row">
                     <div class="col-sm-6 col-6">
                       <div class="description-block border-right">
-                        <h5 class="description-header" id="plinestop">&nbsp;</h5>
+                        <h5 class="description-header" id="plinestop">
+                          &nbsp;
+                        </h5>
                         <span>Plan</span>
                       </div>
                     </div>
                     <div class="col-sm-6 col-6">
                       <div class="description-block">
-                        <h5 class="description-header" id="alinestop">&nbsp;</h5>
+                        <h5 class="description-header" id="alinestop">
+                          &nbsp;
+                        </h5>
                         <span>Actual</span>
                       </div>
                     </div>
@@ -502,64 +551,57 @@
             </div>
 
             <div class="row">
-              <div class="col-lg-4">
+              <div class="col-lg-6">
                 <div class="card">
-                  <div class="card-header" style="background-color: #5c646a">
-                    <span class="card-title" id="title-overview"
-                      >Lorem Ipsum</span
-                    >
-                    <div class="card-tools">
-                      <span id="on-going-prod"></span>
-                    </div>
+                  <div class="card-header">
+                    <span class="card-title" id="title-overview">Preventive Maintenance (Pevita)</span>
+                    <div class="card-tools"> 
+                      <span style="font-size:9pt;background:#FF1E1E;color:#FFFFFF;padding-left:2px;padding-right:2px;">must maintenance </span> &nbsp;
+                      <span style="font-size:9pt;background:#FFF842;color:#403E10;padding-left:2px;padding-right:2px;">need maintenance </span>
                   </div>
-                  <div class="card-body">
+                  </div>
+                  <div class="card-body" style="max-height:200px;overflow: auto;">
                     <div class="row">
-                      <div class="col-lg-12">
-                        <div class="row">
-                          <div class="col-sm-6 col-2">
-                            <div class="description-block">
-                              <div id="dummy1" class="gauge"></div>
-                            </div>
-                          </div>
-                          <div class="col-sm-6 col-2">
-                            <div class="description-block">
-                              <div id="dummy2" class="gauge"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                          <table class="table table-striped" id="data_jig">
+                            <thead>
+                              <tr>
+                                <th class="grey">Line</th>
+                                <th class="grey">Code</th>
+                                <th class="grey">Name</th>
+                                <th class="grey">Model</th>
+                                <th class="grey">Current</th>
+                              </tr>
+                            </thead>
+                            <tbody id="data-preventive"></tbody>
+                          </table>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-lg-8">
+              <div class="col-lg-6">
                 <div class="card">
-                  <div class="card-header" style="background-color: #5c646a">
-                    <span class="card-title" id="title-overview">Preventive & Lemmon</span>
-                    <div class="card-tools">
-                      <span id="on-going-prod"></span>
+                  <div class="card-header">
+                    <span class="card-title" id="title-overview">Line Machine Monitoring (Lemmon)</span>
+                    <div class="card-tools"> 
+                        <span style="font-size:9pt;background:#FF1E1E;color:#FFFFFF;padding-left:2px;padding-right:2px;">need followup </span> &nbsp;
+                        <span style="font-size:9pt;background:#FFF842;color:#403E10;padding-left:2px;padding-right:2px;">standby </span>
                     </div>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body" style="max-height:200px;overflow: auto;">
                     <div class="row">
-                      <div class="col-lg-12">
-                        <div class="row">
                           <table class="table table-striped">
                             <thead>
-                                <tr>
-                                    <th class='grey'>Work Center</th>
-                                    <th class='grey'>Start Time</th>
-                                    <th class='grey'>Problem</th>
-                                    <th class='grey'>Duration</th>
-                                    <th class='grey'>Followed Up By</th>
-                                </tr>
+                              <tr>
+                                <th class="grey">Line</th>
+                                <th class="grey">Start</th>
+                                <th class="grey">Problem</th>
+                                <th class="grey">Duration</th>
+                                <th class="grey">PIC</th>
+                              </tr>
                             </thead>
-                            <tbody id='data-linestop'>
-                            </tbody>
-                            </table>
-                        </div>
-                      </div>
+                            <tbody id="data-linestop"></tbody>
+                          </table>
                     </div>
                   </div>
                 </div>
@@ -569,34 +611,38 @@
         </section>
       </div>
     </div>
-
-    <script>
-      var gauge_dummy1 = new JustGage({
-        id: "dummy1",
-        value: 80,
-        min: 0,
-        max: 99,
-        label: "RIL",
-        valueFontColor: "#FFFFFF",
-        levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
-        textRenderer: (v) => {
-          return v + "%";
-        },
-        donut: false,
-      });
-
-      var gauge_dummy2 = new JustGage({
-        id: "dummy2",
-        value: 70,
-        min: 0,
-        max: 99,
-        label: "Down Time JIG",
-        valueFontColor: "#FFFFFF",
-        levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
-        textRenderer: (v) => {
-          return v + "%";
-        },
-      });
-    </script>
   </body>
 </html>
+
+<script>
+  startTime();
+
+  function startTime() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth();
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var date = today.getDate();
+    if (date < 10) {
+      date = "0" + date;
+    }
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    if (h < 10) {
+      h = "0" + h;
+    }
+    if (m < 10) {
+      m = "0" + m;
+    }
+    if (s < 10) {
+      s = "0" + s;
+    }
+    $("#date").html(
+      year + "-" + month + "-" + date + " ~ " + h + ":" + m + ":" + s
+    );
+    var t = setTimeout(startTime, 500);
+  }
+</script>

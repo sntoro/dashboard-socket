@@ -9,16 +9,39 @@
 
     <link rel="stylesheet" href="dist/css/font.googleapis.css" />
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="js/bootstrap.min.css" />
     <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/core/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#slideshow > div:gt(0)").hide();
+        setInterval(function () {
+          $("#slideshow > div:first")
+            .fadeOut(500)
+            .next()
+            .fadeIn(500)
+            .end()
+            .appendTo("#slideshow");
+        }, 3000);
+      });
+    </script>
+    <style>
+      #slideshow {
+        position: relative;
+      }
+      #slideshow > div {
+        position: absolute;
+      }
+    </style>
   </head>
 
   <body class="dark-mode navbar-fixed text-sm sidebar-collapse">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script>
       $(document).ready(function () {
-        $("#customer").text('AISIN OGAWA');
-        $("#month").text('October');
+        $("#customer").text("AISIN OGAWA");
+        $("#month").text("October");
       });
 
       $(function () {
@@ -55,259 +78,259 @@
 
         socket.on("PPIC/DETAIL/EXPORT/PREPARATION", function (data) {
           if (data[0].PERC == 100) {
-            $("#box_prep1").removeClass().addClass("small-box bg-success");
+            $("#box_prep1").removeClass().addClass("small-box bg-lime");
           } else if (data[0].PERC == 0) {
-            $("#box_prep1").removeClass().addClass("small-box bg-primary");
+            $("#box_prep1").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep1").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[1].PERC == 100) {
-            $("#box_prep2").removeClass().addClass("small-box bg-success");
+            $("#box_prep2").removeClass().addClass("small-box bg-lime");
           } else if (data[1].PERC == 0) {
-            $("#box_prep2").removeClass().addClass("small-box bg-primary");
+            $("#box_prep2").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep2").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[2].PERC == 100) {
-            $("#box_prep3").removeClass().addClass("small-box bg-success");
+            $("#box_prep3").removeClass().addClass("small-box bg-lime");
           } else if (data[2].PERC == 0) {
-            $("#box_prep3").removeClass().addClass("small-box bg-primary");
+            $("#box_prep3").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep3").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[3].PERC == 100) {
-            $("#box_prep4").removeClass().addClass("small-box bg-success");
+            $("#box_prep4").removeClass().addClass("small-box bg-lime");
           } else if (data[3].PERC == 0) {
-            $("#box_prep4").removeClass().addClass("small-box bg-primary");
+            $("#box_prep4").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep4").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[4].PERC == 100) {
-            $("#box_prep5").removeClass().addClass("small-box bg-success");
+            $("#box_prep5").removeClass().addClass("small-box bg-lime");
           } else if (data[4].PERC == 0) {
-            $("#box_prep5").removeClass().addClass("small-box bg-primary");
+            $("#box_prep5").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep5").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[5].PERC == 100) {
-            $("#box_prep6").removeClass().addClass("small-box bg-success");
+            $("#box_prep6").removeClass().addClass("small-box bg-lime");
           } else if (data[5].PERC == 0) {
-            $("#box_prep6").removeClass().addClass("small-box bg-primary");
+            $("#box_prep6").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep6").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[6].PERC == 100) {
-            $("#box_prep7").removeClass().addClass("small-box bg-success");
+            $("#box_prep7").removeClass().addClass("small-box bg-lime");
           } else if (data[6].PERC == 0) {
-            $("#box_prep7").removeClass().addClass("small-box bg-primary");
+            $("#box_prep7").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_prep7").removeClass().addClass("small-box bg-warning");
           }
 
-          $("#exprep_perc1").text(data[0].PERC + "%");
-          $("#exprep1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exprep_perc1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exprep1").text(data[0].PERC + "%");
           $("#exp1").text(data[0].ACT + " / " + data[0].PLN);
 
-          $("#exprep_perc2").text(data[1].PERC + "%");
-          $("#exprep2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exprep_perc2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exprep2").text(data[1].PERC + "%");
           $("#exp2").text(data[1].ACT + " / " + data[1].PLN);
 
-          $("#exprep_perc3").text(data[2].PERC + "%");
-          $("#exprep3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exprep_perc3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exprep3").text(data[2].PERC + "%");
           $("#exp3").text(data[2].ACT + " / " + data[2].PLN);
 
-          $("#exprep_perc4").text(data[3].PERC + "%");
-          $("#exprep4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exprep_perc4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exprep4").text(data[3].PERC + "%");
           $("#exp4").text(data[3].ACT + " / " + data[3].PLN);
 
-          $("#exprep_perc5").text(data[4].PERC + "%");
-          $("#exprep5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exprep_perc5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exprep5").text(data[4].PERC + "%");
           $("#exp5").text(data[4].ACT + " / " + data[4].PLN);
 
-          $("#exprep_perc6").text(data[5].PERC + "%");
-          $("#exprep6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exprep_perc6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exprep6").text(data[5].PERC + "%");
           $("#exp6").text(data[5].ACT + " / " + data[5].PLN);
 
-          $("#exprep_perc7").text(data[6].PERC + "%");
-          $("#exprep7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exprep_perc7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exprep7").text(data[6].PERC + "%");
           $("#exp7").text(data[6].ACT + " / " + data[6].PLN);
         });
 
         socket.on("PPIC/DETAIL/EXPORT/READY", function (data) {
           if (data[0].PERC == 100) {
-            $("#box_ready1").removeClass().addClass("small-box bg-success");
+            $("#box_ready1").removeClass().addClass("small-box bg-lime");
           } else if (data[0].PERC == 0) {
-            $("#box_ready1").removeClass().addClass("small-box bg-primary");
+            $("#box_ready1").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready1").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[1].PERC == 100) {
-            $("#box_ready2").removeClass().addClass("small-box bg-success");
+            $("#box_ready2").removeClass().addClass("small-box bg-lime");
           } else if (data[1].PERC == 0) {
-            $("#box_ready2").removeClass().addClass("small-box bg-primary");
+            $("#box_ready2").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready2").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[2].PERC == 100) {
-            $("#box_ready3").removeClass().addClass("small-box bg-success");
+            $("#box_ready3").removeClass().addClass("small-box bg-lime");
           } else if (data[2].PERC == 0) {
-            $("#box_ready3").removeClass().addClass("small-box bg-primary");
+            $("#box_ready3").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready3").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[3].PERC == 100) {
-            $("#box_ready4").removeClass().addClass("small-box bg-success");
+            $("#box_ready4").removeClass().addClass("small-box bg-lime");
           } else if (data[3].PERC == 0) {
-            $("#box_ready4").removeClass().addClass("small-box bg-primary");
+            $("#box_ready4").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready4").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[4].PERC == 100) {
-            $("#box_ready5").removeClass().addClass("small-box bg-success");
+            $("#box_ready5").removeClass().addClass("small-box bg-lime");
           } else if (data[4].PERC == 0) {
-            $("#box_ready5").removeClass().addClass("small-box bg-primary");
+            $("#box_ready5").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready5").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[5].PERC == 100) {
-            $("#box_ready6").removeClass().addClass("small-box bg-success");
+            $("#box_ready6").removeClass().addClass("small-box bg-lime");
           } else if (data[5].PERC == 0) {
-            $("#box_ready6").removeClass().addClass("small-box bg-primary");
+            $("#box_ready6").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready6").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[6].PERC == 100) {
-            $("#box_ready7").removeClass().addClass("small-box bg-success");
+            $("#box_ready7").removeClass().addClass("small-box bg-lime");
           } else if (data[6].PERC == 0) {
-            $("#box_ready7").removeClass().addClass("small-box bg-primary");
+            $("#box_ready7").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_ready7").removeClass().addClass("small-box bg-warning");
           }
 
-          $("#exready_perc1").text(data[0].PERC + "%");
-          $("#exready1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exready_perc1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exready1").text(data[0].PERC + "%");
           $("#plan_act_ready1").text(data[0].ACT + " / " + data[0].PLN);
 
-          $("#exready_perc2").text(data[1].PERC + "%");
-          $("#exready2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exready_perc2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exready2").text(data[1].PERC + "%");
           $("#plan_act_ready2").text(data[1].ACT + " / " + data[1].PLN);
 
-          $("#exready_perc3").text(data[2].PERC + "%");
-          $("#exready3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exready_perc3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exready3").text(data[2].PERC + "%");
           $("#plan_act_ready3").text(data[2].ACT + " / " + data[2].PLN);
 
-          $("#exready_perc4").text(data[3].PERC + "%");
-          $("#exready4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exready_perc4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exready4").text(data[3].PERC + "%");
           $("#plan_act_ready4").text(data[3].ACT + " / " + data[3].PLN);
 
-          $("#exready_perc5").text(data[4].PERC + "%");
-          $("#exready5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exready_perc5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exready5").text(data[4].PERC + "%");
           $("#plan_act_ready5").text(data[4].ACT + " / " + data[4].PLN);
 
-          $("#exready_perc6").text(data[5].PERC + "%");
-          $("#exready6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exready_perc6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exready6").text(data[5].PERC + "%");
           $("#plan_act_ready6").text(data[5].ACT + " / " + data[5].PLN);
 
-          $("#exready_perc7").text(data[6].PERC + "%");
-          $("#exready7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exready_perc7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exready7").text(data[6].PERC + "%");
           $("#plan_act_ready7").text(data[6].ACT + " / " + data[6].PLN);
         });
 
         socket.on("PPIC/DETAIL/EXPORT/DELIVERED", function (data) {
           if (data[0].PERC == 100) {
-            $("#box_deliv1").removeClass().addClass("small-box bg-success");
+            $("#box_deliv1").removeClass().addClass("small-box bg-lime");
           } else if (data[0].PERC == 0) {
-            $("#box_deliv1").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv1").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv1").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[1].PERC == 100) {
-            $("#box_deliv2").removeClass().addClass("small-box bg-success");
+            $("#box_deliv2").removeClass().addClass("small-box bg-lime");
           } else if (data[1].PERC == 0) {
-            $("#box_deliv2").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv2").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv2").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[2].PERC == 100) {
-            $("#box_deliv3").removeClass().addClass("small-box bg-success");
+            $("#box_deliv3").removeClass().addClass("small-box bg-lime");
           } else if (data[2].PERC == 0) {
-            $("#box_deliv3").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv3").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv3").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[3].PERC == 100) {
-            $("#box_deliv4").removeClass().addClass("small-box bg-success");
+            $("#box_deliv4").removeClass().addClass("small-box bg-lime");
           } else if (data[3].PERC == 0) {
-            $("#box_deliv4").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv4").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv4").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[4].PERC == 100) {
-            $("#box_deliv5").removeClass().addClass("small-box bg-success");
+            $("#box_deliv5").removeClass().addClass("small-box bg-lime");
           } else if (data[4].PERC == 0) {
-            $("#box_deliv5").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv5").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv5").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[5].PERC == 100) {
-            $("#box_deliv6").removeClass().addClass("small-box bg-success");
+            $("#box_deliv6").removeClass().addClass("small-box bg-lime");
           } else if (data[5].PERC == 0) {
-            $("#box_deliv6").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv6").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv6").removeClass().addClass("small-box bg-warning");
           }
 
           if (data[6].PERC == 100) {
-            $("#box_deliv7").removeClass().addClass("small-box bg-success");
+            $("#box_deliv7").removeClass().addClass("small-box bg-lime");
           } else if (data[6].PERC == 0) {
-            $("#box_deliv7").removeClass().addClass("small-box bg-primary");
+            $("#box_deliv7").removeClass().addClass("small-box bg-indigo");
           } else {
             $("#box_deliv7").removeClass().addClass("small-box bg-warning");
           }
 
-          $("#exdeliv_perc1").text(data[0].PERC + "%");
-          $("#exdeliv1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc1").text(data[0].CHR_CONTAINER_CODE);
+          $("#exdeliv1").text(data[0].PERC + "%");
           $("#plan_act_deliv1").text(data[0].ACT + " / " + data[0].PLN);
 
-          $("#exdeliv_perc2").text(data[1].PERC + "%");
-          $("#exdeliv2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc2").text(data[1].CHR_CONTAINER_CODE);
+          $("#exdeliv2").text(data[1].PERC + "%");
           $("#plan_act_deliv2").text(data[1].ACT + " / " + data[1].PLN);
 
-          $("#exdeliv_perc3").text(data[2].PERC + "%");
-          $("#exdeliv3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc3").text(data[2].CHR_CONTAINER_CODE);
+          $("#exdeliv3").text(data[2].PERC + "%");
           $("#plan_act_deliv3").text(data[2].ACT + " / " + data[2].PLN);
 
-          $("#exdeliv_perc4").text(data[3].PERC + "%");
-          $("#exdeliv4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc4").text(data[3].CHR_CONTAINER_CODE);
+          $("#exdeliv4").text(data[3].PERC + "%");
           $("#plan_act_deliv4").text(data[3].ACT + " / " + data[3].PLN);
 
-          $("#exdeliv_perc5").text(data[4].PERC + "%");
-          $("#exdeliv5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc5").text(data[4].CHR_CONTAINER_CODE);
+          $("#exdeliv5").text(data[4].PERC + "%");
           $("#plan_act_deliv5").text(data[4].ACT + " / " + data[4].PLN);
 
-          $("#exdeliv_perc6").text(data[5].PERC + "%");
-          $("#exdeliv6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc6").text(data[5].CHR_CONTAINER_CODE);
+          $("#exdeliv6").text(data[5].PERC + "%");
           $("#plan_act_deliv6").text(data[5].ACT + " / " + data[5].PLN);
 
-          $("#exdeliv_perc7").text(data[6].PERC + "%");
-          $("#exdeliv7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exdeliv_perc7").text(data[6].CHR_CONTAINER_CODE);
+          $("#exdeliv7").text(data[6].PERC + "%");
           $("#plan_act_deliv7").text(data[6].ACT + " / " + data[6].PLN);
         });
       });
@@ -337,609 +360,615 @@
 
       <div class="content-wrapper">
         <div class="content-header" style="margin-bottom: -5px"></div>
-        <section class="content">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-2 col-2">
-                <div class="card bg-danger">
-                  <div class="card-body">
-                    <div class="inner">
-                      <h3 id="customer"></h3>
-                      <span id="month"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-4">
-                <div class="card">
-                  <div class="card-body p-0">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th
-                            style="padding-bottom: 0.4em; padding-top: 0.4em"
-                          ></th>
-                          <th style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            Plan
-                          </th>
-                          <th style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            Actual
-                          </th>
-                          <th style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            Remain
-                          </th>
-                          <th style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            Stat
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="desc_0" ></span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="plan_0">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="actual_0">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="remain_0">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span class="badge badge-danger" id="status_0"><i class="fas fa-times"></i></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="desc_1" ></span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="plan_1">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="actual_1">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="remain_1">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span class="badge badge-success" id="status_1"
-                              ><i class="fas fa-check"></i
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="desc_2" ></span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="plan_2">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="actual_2">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span id="remain_2">&nbsp;</span>
-                          </td>
-                          <td style="padding-bottom: 0.4em; padding-top: 0.4em">
-                            <span class="badge badge-warning" id="status_2"
-                              ><i class="fas fa-sync-alt"></i
-                            ></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-2 col-2">
-                <div class="card bg-info">
-                  <div class="card-body">
-                    <div class="inner">
-                      <span>EXPORT</span>
-                      <h5>PREPARATION</h5>
-                      <h3 id="sum_prep">&nbsp;</h3>
-                      <!-- <span>...</span> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-2 col-2">
-                <div class="card bg-info">
-                  <div class="card-body">
-                    <div class="inner">
-                      <span>DELIVERY </span>
-                      <h5>READINESS</h5>
-                      <h3 id="sum_ready">&nbsp;</h3>
-                      <!-- <span>(Yellow Container)</span> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-2 col-2">
-                <div class="card bg-info">
-                  <div class="card-body">
-                    <div class="inner">
-                      <span>...</span>
-                      <h5>DELIVERED</h5>
-                      <h3 id="sum_deliv">&nbsp;</h3>
-                      <!-- <span>...</span> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
-                <div class="card">
-                  <div
-                    class="card-header"
-                    style="padding-bottom: 0.2em; padding-top: 0.2em"
-                  >
-                    <span class="card-title" id="title-overview"
-                      >Export Preparation</span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12">
-                <div class="card-body p-0">
+          <section class="content">
+            <div class="container-fluid">
+              <div id="slideshow">
                   <div class="row">
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep1">
-                        <div class="inner">
-                          <h4 id="exprep_perc1">&nbsp;</h4>
-                          <span id="exprep1">&nbsp;</span>
+                    <div class="col-lg-2 col-2">
+                      <div class="card bg-danger">
+                        <div class="card-body">
+                          <div class="inner">
+                            <h3 id="customer"></h3>
+                            <span id="month"></span>
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp1">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep2">
-                        <div class="inner">
-                          <h4 id="exprep_perc2">&nbsp;</h4>
-                          <span id="exprep2">&nbsp;</span>
+                
+                    <div class="col-lg-4 col-4">
+                      <div class="card">
+                        <div class="card-body p-0">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th
+                                  style="padding-bottom: 0.4em; padding-top: 0.4em"
+                                ></th>
+                                <th style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  Plan
+                                </th>
+                                <th style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  Actual
+                                </th>
+                                <th style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  Remain
+                                </th>
+                                <th style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  Stat
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="desc_0" ></span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="plan_0">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="actual_0">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="remain_0">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span class="badge badge-danger" id="status_0"><i class="fas fa-times"></i></span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="desc_1" ></span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="plan_1">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="actual_1">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="remain_1">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span class="badge badge-success" id="status_1"
+                                    ><i class="fas fa-check"></i
+                                  ></span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="desc_2" ></span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="plan_2">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="actual_2">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span id="remain_2">&nbsp;</span>
+                                </td>
+                                <td style="padding-bottom: 0.4em; padding-top: 0.4em">
+                                  <span class="badge badge-warning" id="status_2"
+                                    ><i class="fas fa-sync-alt"></i
+                                  ></span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-                        <a class="small-box-footer" id="exp2">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep3">
-                        <div class="inner">
-                          <h4 id="exprep_perc3">&nbsp;</h4>
-                          <span id="exprep3">&nbsp;</span>
+                
+                    <div class="col-lg-2 col-2">
+                      <div class="card bg-indigo">
+                        <div class="card-body">
+                          <div class="inner">
+                            <span>EXPORT</span>
+                            <h5>PREPARATION</h5>
+                            <h3 id="sum_prep">&nbsp;</h3>
+                            <!-- <span>...</span> -->
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp3">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep4">
-                        <div class="inner">
-                          <h4 id="exprep_perc4">&nbsp;</h4>
-                          <span id="exprep4">&nbsp;</span>
+                    <div class="col-lg-2 col-2">
+                      <div class="card bg-indigo">
+                        <div class="card-body">
+                          <div class="inner">
+                            <span>DELIVERY </span>
+                            <h5>READINESS</h5>
+                            <h3 id="sum_ready">&nbsp;</h3>
+                            <!-- <span>(Yellow Container)</span> -->
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp4">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep5">
-                        <div class="inner">
-                          <h4 id="exprep_perc5">&nbsp;</h4>
-                          <span id="exprep5">&nbsp;</span>
+                    <div class="col-lg-2 col-2">
+                      <div class="card bg-indigo">
+                        <div class="card-body">
+                          <div class="inner">
+                            <span>...</span>
+                            <h5>DELIVERED</h5>
+                            <h3 id="sum_deliv">&nbsp;</h3>
+                            <!-- <span>...</span> -->
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp5">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep6">
-                        <div class="inner">
-                          <h4 id="exprep_perc6">&nbsp;</h4>
-                          <span id="exprep6">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
+                      <div class="card">
+                        <div
+                          class="card-header"
+                          style="padding-bottom: 0.2em; padding-top: 0.2em"
+                        >
+                          <span class="card-title" id="title-overview"
+                            >Export Preparation</span
+                          >
                         </div>
-                        <a class="small-box-footer" id="exp6">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep7">
-                        <div class="inner">
-                          <h4 id="exprep_perc7">&nbsp;</h4>
-                          <span id="exprep7">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12">
+                      <div class="card-body p-0">
+                        <div class="row">
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep1">
+                              <div class="inner">
+                                <h4 id="exprep_perc1">&nbsp;</h4>
+                                <span id="exprep1">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp1">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep2">
+                              <div class="inner">
+                                <h4 id="exprep_perc2">&nbsp;</h4>
+                                <span id="exprep2">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp2">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep3">
+                              <div class="inner">
+                                <h4 id="exprep_perc3">&nbsp;</h4>
+                                <span id="exprep3">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp3">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep4">
+                              <div class="inner">
+                                <h4 id="exprep_perc4">&nbsp;</h4>
+                                <span id="exprep4">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp4">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep5">
+                              <div class="inner">
+                                <h4 id="exprep_perc5">&nbsp;</h4>
+                                <span id="exprep5">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp5">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep6">
+                              <div class="inner">
+                                <h4 id="exprep_perc6">&nbsp;</h4>
+                                <span id="exprep6">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp6">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep7">
+                              <div class="inner">
+                                <h4 id="exprep_perc7">&nbsp;</h4>
+                                <span id="exprep7">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp7">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep8">
+                              <div class="inner">
+                                <h4 id="exprep_perc8">&nbsp;</h4>
+                                <span id="exprep8">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp8">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep9">
+                              <div class="inner">
+                                <h4 id="exprep_perc9">&nbsp;</h4>
+                                <span id="exprep9">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp9">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep10">
+                              <div class="inner">
+                                <h4 id="exprep_perc10">&nbsp;</h4>
+                                <span id="exprep10">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp10">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep11">
+                              <div class="inner">
+                                <h4 id="exprep_perc11">&nbsp;</h4>
+                                <span id="exprep11">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp11">&nbsp;</a>
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_prep12">
+                              <div class="inner">
+                                <h4 id="exprep_perc12">&nbsp;</h4>
+                                <span id="exprep12">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="exp12">&nbsp;</a>
+                            </div>
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp7">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep8">
-                        <div class="inner">
-                          <h4 id="exprep_perc8">&nbsp;</h4>
-                          <span id="exprep8">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
+                      <div class="card">
+                        <div
+                          class="card-header"
+                          style="padding-bottom: 0.2em; padding-top: 0.2em"
+                        >
+                          <span class="card-title" id="title-overview"
+                            >Ready to Delivery (Yellow container)</span
+                          >
                         </div>
-                        <a class="small-box-footer" id="exp8">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep9">
-                        <div class="inner">
-                          <h4 id="exprep_perc9">&nbsp;</h4>
-                          <span id="exprep9">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12">
+                      <div class="card-body p-0">
+                        <div class="row">
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready1">
+                              <div class="inner">
+                                <h4 id="exready_perc1">&nbsp;</h4>
+                                <span id="exready1">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready1"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready2">
+                              <div class="inner">
+                                <h4 id="exready_perc2">&nbsp;</h4>
+                                <span id="exready2">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready2"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready3">
+                              <div class="inner">
+                                <h4 id="exready_perc3">&nbsp;</h4>
+                                <span id="exready3">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready3"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready4">
+                              <div class="inner">
+                                <h4 id="exready_perc4">&nbsp;</h4>
+                                <span id="exready4">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready4"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready5">
+                              <div class="inner">
+                                <h4 id="exready_perc5">&nbsp;</h4>
+                                <span id="exready5">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready5"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready6">
+                              <div class="inner">
+                                <h4 id="exready_perc6">&nbsp;</h4>
+                                <span id="exready6">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready6"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready7">
+                              <div class="inner">
+                                <h4 id="exready_perc7">&nbsp;</h4>
+                                <span id="exready7">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready7"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready8">
+                              <div class="inner">
+                                <h4 id="exready_perc8">&nbsp;</h4>
+                                <span id="exready8">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready8"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready9">
+                              <div class="inner">
+                                <h4 id="exready_perc9">&nbsp;</h4>
+                                <span id="exready9">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready9"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready10">
+                              <div class="inner">
+                                <h4 id="exready_perc10">&nbsp;</h4>
+                                <span id="exready10">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready10"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready11">
+                              <div class="inner">
+                                <h4 id="exready_perc11">&nbsp;</h4>
+                                <span id="exready11">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready11"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_ready12">
+                              <div class="inner">
+                                <h4 id="exready_perc12">&nbsp;</h4>
+                                <span id="exready12">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_ready12"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp9">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep10">
-                        <div class="inner">
-                          <h4 id="exprep_perc10">&nbsp;</h4>
-                          <span id="exprep10">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
+                      <div class="card">
+                        <div
+                          class="card-header"
+                          style="padding-bottom: 0.2em; padding-top: 0.2em"
+                        >
+                          <span class="card-title" id="title-overview"
+                            >Delivered</span
+                          >
                         </div>
-                        <a class="small-box-footer" id="exp10">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep11">
-                        <div class="inner">
-                          <h4 id="exprep_perc11">&nbsp;</h4>
-                          <span id="exprep11">&nbsp;</span>
+                
+                    <div class="col-lg-12 col-12">
+                      <div class="card-body p-0">
+                        <div class="row">
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv1">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc1">&nbsp;</h4>
+                                <span id="exdeliv1">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv1"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv2">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc2">&nbsp;</h4>
+                                <span id="exdeliv2">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv2"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv3">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc3">&nbsp;</h4>
+                                <span id="exdeliv3">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv3"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv4">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc4">&nbsp;</h4>
+                                <span id="exdeliv4">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv4"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv5">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc5">&nbsp;</h4>
+                                <span id="exdeliv5">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv5"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv6">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc6">&nbsp;</h4>
+                                <span id="exdeliv6">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv6"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv7">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc7">&nbsp;</h4>
+                                <span id="exdeliv7">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv7"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv8">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc8">&nbsp;</h4>
+                                <span id="exdeliv8">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv8"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv9">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc9">&nbsp;</h4>
+                                <span id="exdeliv9">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv9"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv10">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc10">&nbsp;</h4>
+                                <span id="exdeliv10">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv10"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv11">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc11">&nbsp;</h4>
+                                <span id="exdeliv11">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv11"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-1 col-2">
+                            <div class="small-box bg-dark" id="box_deliv12">
+                              <div class="inner">
+                                <h4 id="exdeliv_perc12">&nbsp;</h4>
+                                <span id="exdeliv12">&nbsp;</span>
+                              </div>
+                              <a class="small-box-footer" id="plan_act_deliv12"
+                                >&nbsp;</a
+                              >
+                            </div>
+                          </div>
                         </div>
-                        <a class="small-box-footer" id="exp11">&nbsp;</a>
                       </div>
                     </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_prep12">
-                        <div class="inner">
-                          <h4 id="exprep_perc12">&nbsp;</h4>
-                          <span id="exprep12">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="exp12">&nbsp;</a>
-                      </div>
-                    </div>
+                
                   </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
-                <div class="card">
-                  <div
-                    class="card-header"
-                    style="padding-bottom: 0.2em; padding-top: 0.2em"
-                  >
-                    <span class="card-title" id="title-overview"
-                      >Ready to Delivery (Yellow container)</span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12">
-                <div class="card-body p-0">
                   <div class="row">
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready1">
-                        <div class="inner">
-                          <h4 id="exready_perc1">&nbsp;</h4>
-                          <span id="exready1">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready1"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready2">
-                        <div class="inner">
-                          <h4 id="exready_perc2">&nbsp;</h4>
-                          <span id="exready2">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready2"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready3">
-                        <div class="inner">
-                          <h4 id="exready_perc3">&nbsp;</h4>
-                          <span id="exready3">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready3"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready4">
-                        <div class="inner">
-                          <h4 id="exready_perc4">&nbsp;</h4>
-                          <span id="exready4">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready4"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready5">
-                        <div class="inner">
-                          <h4 id="exready_perc5">&nbsp;</h4>
-                          <span id="exready5">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready5"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready6">
-                        <div class="inner">
-                          <h4 id="exready_perc6">&nbsp;</h4>
-                          <span id="exready6">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready6"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready7">
-                        <div class="inner">
-                          <h4 id="exready_perc7">&nbsp;</h4>
-                          <span id="exready7">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready7"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready8">
-                        <div class="inner">
-                          <h4 id="exready_perc8">&nbsp;</h4>
-                          <span id="exready8">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready8"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready9">
-                        <div class="inner">
-                          <h4 id="exready_perc9">&nbsp;</h4>
-                          <span id="exready9">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready9"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready10">
-                        <div class="inner">
-                          <h4 id="exready_perc10">&nbsp;</h4>
-                          <span id="exready10">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready10"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready11">
-                        <div class="inner">
-                          <h4 id="exready_perc11">&nbsp;</h4>
-                          <span id="exready11">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready11"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_ready12">
-                        <div class="inner">
-                          <h4 id="exready_perc12">&nbsp;</h4>
-                          <span id="exready12">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_ready12"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
+                    here
                   </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12" style="margin-bottom: -0.5em">
-                <div class="card">
-                  <div
-                    class="card-header"
-                    style="padding-bottom: 0.2em; padding-top: 0.2em"
-                  >
-                    <span class="card-title" id="title-overview"
-                      >Delivered</span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-12">
-                <div class="card-body p-0">
-                  <div class="row">
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv1">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc1">&nbsp;</h4>
-                          <span id="exdeliv1">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv1"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv2">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc2">&nbsp;</h4>
-                          <span id="exdeliv2">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv2"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv3">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc3">&nbsp;</h4>
-                          <span id="exdeliv3">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv3"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv4">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc4">&nbsp;</h4>
-                          <span id="exdeliv4">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv4"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv5">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc5">&nbsp;</h4>
-                          <span id="exdeliv5">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv5"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv6">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc6">&nbsp;</h4>
-                          <span id="exdeliv6">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv6"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv7">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc7">&nbsp;</h4>
-                          <span id="exdeliv7">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv7"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv8">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc8">&nbsp;</h4>
-                          <span id="exdeliv8">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv8"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv9">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc9">&nbsp;</h4>
-                          <span id="exdeliv9">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv9"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv10">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc10">&nbsp;</h4>
-                          <span id="exdeliv10">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv10"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv11">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc11">&nbsp;</h4>
-                          <span id="exdeliv11">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv11"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-lg-1 col-2">
-                      <div class="small-box bg-dark" id="box_deliv12">
-                        <div class="inner">
-                          <h4 id="exdeliv_perc12">&nbsp;</h4>
-                          <span id="exdeliv12">&nbsp;</span>
-                        </div>
-                        <a class="small-box-footer" id="plan_act_deliv12"
-                          >&nbsp;</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
       </div>
     </div>
   </body>

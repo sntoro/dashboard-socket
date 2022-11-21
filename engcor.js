@@ -45,6 +45,41 @@ setInterval(function () {
         io.emit("TORO/TEST2", result.recordset);
       }
     );
+
+    new sql.Request().query(
+      "EXEC zsp_get_jig_need_preventive",
+      (err, result) => {
+
+        let jig_data = null;
+        for (let index = 0; index < result.recordset.length; ++index) {
+          const element = result.recordset[index];
+
+          if(element.stat == 1){
+            var color = '#403E10';
+            var background = '#FFF842';
+          }else{
+            var color = '#FFFFFF';
+            var background = '#FF1E1E';
+          }
+
+          jig_data += "<tr style='font-weight: 600'>" +
+            "<td style='background:"+ background +";color:"+ color +"'>"+element.work_center+"</td>" +
+            "<td>"+element.code+"</td>" +
+            "<td>"+element.name+"</td>" +
+            "<td>"+element.model+"</td>" +
+            "<td>"+element.stroke+"</td>" +
+            "</tr>";
+        }
+        io.emit("TORO/TEST3", jig_data);
+
+        if (err) {
+          console.log(err);
+          return;
+        }
+
+      }
+    );
+
   });
 
   sql.on("error", (err) => {
